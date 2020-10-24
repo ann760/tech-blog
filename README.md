@@ -39,17 +39,21 @@ Class project to create a CMS-style blogging website following the MVC paradigm.
 
 ## Built With
 - node js
-- express
-- sequelize
-- dotenv
-- bcrypt
-- mysql 2
-- javaScript 
-- mysql
+- bcrypt 5.0.0
+- connect-session-sequelize 7.0.4
+- dotenv 8.2.0
+- express 4.17.1
+- express-handlebars 5.1.0
+- express-session 1.17.1
+- jest 26.6.0
+- mysql2 2.2.5
+- sequelize 6.3.5
 
 ## Installation
-To run this program you will need to install the npm node js, express-session, express-handlebars, sequelize, dotenv, express-session, and mysql2
-
+To run this program you will need to run the commands
+init npm
+and
+npm install bcrypt connect-session-sequelize dotenv express express-handlebars express-session jest mysql2 sequelize
 
 # link to site
 
