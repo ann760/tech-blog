@@ -46,12 +46,7 @@ router.get("/edit/:id", withAuth, (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: [
-        "id",
-        "title",
-        "contents",
-        "created_at",
-    ],
+    attributes: ["id", "title", "contents", "created_at"],
     include: [
       {
         model: Comment,
@@ -66,16 +61,27 @@ router.get("/edit/:id", withAuth, (req, res) => {
         attributes: ["username"],
       },
     ],
-  })
-  .then((dbPostData) => {
-    // serialize data before passing to template
-    const posts = dbPostData.get({ plain: true });
-    res.render("edit-post", { posts, loggedIn: true });
-  })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  }).then((dbPostData) => {
+    if (!dbPostData) {
+      res.status(404).json({ message: "No post found with this id" });
+      return;
+    }
+
+    // serialize the data
+    const post = dbPostData.get({ plain: true });
+
+    // pass data to template
+    res
+      .render("edit-post", {
+        post,
+        loggedIn: req.session.loggedIn,
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+});
 
 
 module.exports = router;
