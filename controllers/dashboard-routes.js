@@ -41,7 +41,7 @@ router.get("/", withAuth, (req, res) => {
     });
 });
 
-router.get("/:id", withAuth, (req, res) => {
+router.get("/edit/:id", withAuth, (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
@@ -69,13 +69,13 @@ router.get("/:id", withAuth, (req, res) => {
   })
   .then((dbPostData) => {
     // serialize data before passing to template
-    const posts = dbPostData.map((post) => post.get({ plain: true }));
+    const posts = dbPostData.get({ plain: true });
     res.render("edit-post", { posts, loggedIn: true });
   })
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
     });
-});
+
 
 module.exports = router;
