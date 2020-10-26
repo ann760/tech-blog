@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const sequelize = require("../../config/connection");
-const { Post, User, Comment, Vote } = require("../../models");
+const { Post, User, Comment} = require("../../models");
+const withAuth = require('../../utils/auth')
 
 // get all users
-router.get("/", (req, res) => {
-  console.log("======================");
+router.get("/", withAuth, (req, res) => {
+ // console.log("======================");
   Post.findAll({
     attributes: [
       "id",
@@ -35,7 +36,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", withAuth, (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
@@ -74,7 +75,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", withAuth, (req, res) => {
   // expects {title: 'Post public!', content: 'a post shold have content. I don't know the character limit', user_id: 1}
   Post.create({
     title: req.body.title,
@@ -88,10 +89,11 @@ router.post("/", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", withAuth, (req, res) => {
   Post.update(
     {
       title: req.body.title,
+      contents: req.body.contents,
     },
     {
       where: {
@@ -112,7 +114,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
   Post.destroy({
     where: {
       id: req.params.id,
