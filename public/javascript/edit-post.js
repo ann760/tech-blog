@@ -1,21 +1,29 @@
 async function editFormHandler(event) {
+  console.log("start");
   event.preventDefault();
 
-  const response = await fetch("/api/posts/:id", {
-    method: "PUT",
-    body: JSON.stringify({
-        title: req.body.title,
-        contents: req.body.contents
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const id = document.querySelector('.edit-post-form').id;
+  const title = document.querySelector('input[name="post-title"]').value;
+  const contents = document.querySelector('textarea[name="post-contents"]')
+    .value;
 
-  if (response.ok) {
-    document.location.reload();
-  } else {
-    alert(response.statusText);
+  if (title || contents) {
+    const response = await fetch(`/api/post/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        title,
+        contents,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace("/");
+    } else {
+      alert(response.statusText);
+    }
   }
 }
 

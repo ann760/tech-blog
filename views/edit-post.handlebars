@@ -8,6 +8,7 @@
       <input name="post-title" type="text" value="{{post.title}}" />
       <span>({{post.contents}})</span>
     </div>
+        <textarea name="post-contents" value={{post.contents}}></textarea>
     <div>
      by you on {{format_date post.created_at}}
       |
@@ -19,10 +20,5 @@
 </article>
 
 
-<div class="comments"></div>
-{{> comments post.comments}}
-</div>
-
 <script src="/javascript/edit-post.js"></script>
 <script src="/javascript/delete-post.js"></script>
-<script src="/javascript/comment.js"></script>

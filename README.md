@@ -56,7 +56,10 @@ and
 npm install bcrypt connect-session-sequelize dotenv express express-handlebars express-session jest mysql2 sequelize
 
 # link to site
-https://aqueous-cove-36566.herokuapp.com/
+https://peaceful-garden-31793.herokuapp.com/
+
+
+ ![Blog](./public/blog.jpg)
 
 ## Author
 * [Ann-Marie Orozco](ann760.github.io/myportfolio/) - 
