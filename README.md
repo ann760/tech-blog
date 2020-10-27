@@ -52,7 +52,7 @@ Class project to create a CMS-style blogging website following the MVC paradigm.
 ## Installation
 To run this program you will need to run the commands
 init npm
-and
+and 
 npm install bcrypt connect-session-sequelize dotenv express express-handlebars express-session jest mysql2 sequelize
 
 # link to site

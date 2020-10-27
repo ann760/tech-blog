@@ -4,7 +4,7 @@ const { Post, User, Comment} = require("../../models");
 const withAuth = require('../../utils/auth')
 
 // get all users
-router.get("/", withAuth, (req, res) => {
+router.get("/", (req, res) => {
  // console.log("======================");
   Post.findAll({
     attributes: [
@@ -36,7 +36,7 @@ router.get("/", withAuth, (req, res) => {
     });
 });
 
-router.get("/:id", withAuth, (req, res) => {
+router.get("/:id", (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
@@ -75,7 +75,7 @@ router.get("/:id", withAuth, (req, res) => {
     });
 });
 
-router.post("/", withAuth, (req, res) => {
+router.post("/", (req, res) => {
   // expects {title: 'Post public!', content: 'a post shold have content. I don't know the character limit', user_id: 1}
   Post.create({
     title: req.body.title,
@@ -89,7 +89,7 @@ router.post("/", withAuth, (req, res) => {
     });
 });
 
-router.put("/:id", withAuth, (req, res) => {
+router.put("/:id", (req, res) => {
   Post.update(
     {
       title: req.body.title,
@@ -114,7 +114,7 @@ router.put("/:id", withAuth, (req, res) => {
     });
 });
 
-router.delete("/:id", withAuth, (req, res) => {
+router.delete("/:id", (req, res) => {
   Post.destroy({
     where: {
       id: req.params.id,
